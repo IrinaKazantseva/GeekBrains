@@ -1,0 +1,3 @@
+[*task41_NumberMore0*](https://github.com/IrinaKazantseva/TEST/tree/main/HomeWork6/task41_NumberMore0) - **Задача 41**: Пользователь вводит с клавиатуры M чисел в одну линию (не используем Enter). Числа разделены пробелами. Посчитайте, сколько чисел больше 0 ввёл пользователь.
+
+[*task43_CrossPoint*](https://github.com/IrinaKazantseva/TEST/tree/main/HomeWork6/task43_CrossPoint) - **Задача 43**: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.

@@ -1,0 +1,27 @@
+name: continuous integration
+
+on: [push]
+
+jobs:
+  detect-apps:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - id: set-matrix
+        run: echo "::set-output name=path_matrix::$(find . -type f -name '*.csproj' | sed -r 's|/[^/]+$||' | jq --raw-input . | jq --slurp . | tr -d '\n')"
+    outputs:
+      path_matrix: ${{ steps.set-matrix.outputs.path_matrix }}
+  build:
+    runs-on: self-hosted
+    needs: detect-apps
+    strategy:
+      matrix:
+        path: ${{ fromJson(needs.detect-apps.outputs.path_matrix) }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK 6.0
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+      - name: Build ${{ matrix.path }}
+        run: cd "${{ matrix.path }}" && dotnet build
